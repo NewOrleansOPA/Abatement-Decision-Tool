@@ -2,9 +2,9 @@ init:
 	Rscript rscripts/requirements.r
 	sudo pip install -r pyscripts/requirements.txt
 
-build:
-	s3cmd sync ../nola s3://enigma-analytics/
-	s3cmd setacl -r s3://enigma-analytics/nola/ --acl-public
+# build:
+# 	s3cmd sync ../nola s3://enigma-analytics/
+# 	s3cmd setacl -r s3://enigma-analytics/nola/ --acl-public
 
 compress:
 
@@ -44,7 +44,7 @@ all:
 	make analysis
 	make docs
 	make compress
-	make build
+	# make build
 	make push
 	make view
 
