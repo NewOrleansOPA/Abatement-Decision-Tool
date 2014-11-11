@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title><center>New Orleans Abatement Analytics</center></title>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p><center><img src="data:image/png;base64,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"></center></p>
+
+<h1><center>New Orleans Abatement Analytics</center></h1>
+
+<h2>Navigation</h2>
+
+<ul>
+<li> <a href="index.html">Overview</a></li>
+<li> <a href="reports/munge.html">Data Cleaning</a></li>
+<li> <a href="reports/analysis.html">Analysis</a></li>
+<li> <a href="nola.zip"><em>Download this repository</em></a></li>
+</ul>
+
+<p>All management of the project is done through the <a href="Makefile"><code>Makefile</code></a></p>
+
+<h2>Install Required Dependencies</h2>
+
+<p>Runs <code>rscript/requirements.r</code> and <code>pip install -r requirements.txt</code></p>
+
+<pre><code class="bash">$ make init
+</code></pre>
+
+<h2>(Optionally) Download Census Data</h2>
+
+<p>via <code>pyscripts/get_census_data</code>
+<strong>NOTE</strong> The output of this script is already located at <a href="%60data/census-data.csv%60"><code>data/census-data.csv</code></a>.</p>
+
+<pre><code class="bash">$ make census_data
+</code></pre>
+
+<h2>Clean and join data</h2>
+
+<p>via <code>rscripts/munge.Rmd</code>
+<strong>NOTE</strong> This is an <a href="http://rmarkdown.rstudio.com/">RMarkdown</a> document.</p>
+
+<pre><code class="bash">$ make munge
+</code></pre>
+
+<h2>Run the analysis pipline</h2>
+
+<p>via <code>rscripts/analysis.Rmd</code>
+<strong>NOTE</strong> This is an <a href="http://rmarkdown.rstudio.com/">RMarkdown</a> document.</p>
+
+<pre><code class="bash">$ make analysis
+</code></pre>
+
+<h2>Render the documentation</h2>
+
+<p>Converts <a href="index.md"><code>Index.md</code></a> =&gt; <a href="index.html"><code>index.html</code></a>
+Converts <a href="README.md"><code>README.md</code></a> =&gt; <a href="docs.html"><code>docs.html</code></a></p>
+
+<pre><code class="bash">$ make docs
+</code></pre>
+
+<h2>View the outputted documentation</h2>
+
+<p><strong>NOTE</strong> This is an <a href="http://rmarkdown.rstudio.com/">RMarkdown</a> document.</p>
+
+<pre><code class="bash">$ make view
+</code></pre>
+
+<h2>Utilities</h2>
+
+<ul>
+<li><code>make build</code>
+
+<ul>
+<li>Syncs the output on an s3 website</li>
+</ul></li>
+<li><code>make compress</code>
+
+<ul>
+<li>Creates a compressed archive of this repository</li>
+</ul></li>
+<li><code>make all</code>
+
+<ul>
+<li>Runs the entire analysis pipeline.</li>
+</ul></li>
+<li><code>make push</code>
+
+<ul>
+<li>Pushes the repository to master + gh-pages branches.</li>
+</ul></li>
+</ul>
+
+<h2>TODO</h2>
+
+<ul>
+<li>[x] Cleanup Data</li>
+<li>[x] Deal with missing values via Imputation</li>
+<li>[x] Random Forest
+= [x] Logistic Regression</li>
+<li>[x] Decision Tree </li>
+<li>[x] Naive Bayes </li>
+<li>[x] Ensemble </li>
+<li>[x] Model Selection</li>
+<li>[x] Model Analysis </li>
+<li>[x] Analyze coder disparities </li>
+<li>[x] Put It On A Map
+
+<ul>
+<li><a href="http://enigmaio.cartodb.com/viz/a4364e76-5a34-11e4-a921-0e853d047bba/public_map">http://enigmaio.cartodb.com/viz/a4364e76-5a34-11e4-a921-0e853d047bba/public_map</a></li>
+</ul></li>
+</ul>
+
+<h2>SQL QUERIES</h2>
+
+<h3>AGG JOINS</h3>
+
+<pre><code class="sql">SELECT 
+  case_number_agg.p_demolish, 
+  case_number_agg.p_sell, 
+  case_number_agg.error, 
+  case_number_agg.variance, 
+  nola_abatement_geo.the_geom,
+  nola_abatement_geo.case_number 
+FROM case_number_agg, case_number 
+WHERE nola_abatement_geo.case_number = case_number_agg.case_number 
+</code></pre>
+
+<h2>Original Briefing</h2>
+
+<p>The data is a set of 603 cases where a review team of mid-level code enforcement supervisors assigned values according to 10 different variables which were identified during interviews with code enforcement staff and leadership to have salience in the decision of whether a property with a blight judgment should proceed down the path of code lien foreclosure (or “sell”) or demolition. That team then also made a recommendation on which abatement path that property should pursue (sell or demolish).</p>
+
+<p>What we would like to do is use this data to create a beta decision support tool to make a recommendation to code enforcement leadership on an abatement decision to make those decisions more consistent and swift. Ideally, we would refresh the model on a periodic basis once we have more data on whether or not code leadership rejected or accepted the recommendation. Over time, we hope the model will closely replicate the decision making process of the SMEs.</p>
+
+<p>One way to approach this analysis is to create an abatement decision “scorecard” where each of the ten independent variables are assigned some weight, and if the totals of a score exceeds some threshold, the tool will make a recommendation to demolish; otherwise, the recommendation is to sell. Mainly because this approach is within our capacity, we can develop a model using this approach</p>
+
+<p>But I am sure there are other approaches, such as developing a decision tree where certain variables may be conditional upon the assignment of other variables. There may be many other approaches as well. Where we could use your help is to develop an alternative model to the one using logistic regression so we can then test our options to see which works best.</p>
+
+<p>There are some data integrity issues, which are noted in the “notes” tab of the spreadsheet. There are also some questions about how often the recommendation of the review team is actually consistent with the determination code enforcement leadership would have taken. However, for a beta model, I think this data is probably good enough to start and as we get more data, we can improve it over time.</p>
+
+<p>We are R users over here (mainly because we’re cheap). Best case scenario is you all use R as well and then we can work from each other’s code. We’ll put our code for the linear regression on Github so you can see what we’re up to.  If you all don’t use R, no big deal – just tell us what you did and we can just rewrite the code later on.</p>
+
+<p>If you or your analysts have any questions, please let me know.</p>
+
+<p>Thanks again. We very much appreciate your help.</p>
+
+</body>
+
+</html>

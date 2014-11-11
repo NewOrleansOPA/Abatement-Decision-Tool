@@ -1,0 +1,9 @@
+base
+e1071
+ggplot2
+plyr
+randomForest
+reshape2
+rpart
+rpart.plot
+stringr
