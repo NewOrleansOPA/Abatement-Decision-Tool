@@ -1,7 +1,7 @@
 <center><img src="reports/enigma.png"></center>
 <center>New Orleans Abatement Analytics</center>
-<center>Brian Abelson, Enigma, 2014</center>
 ==============
+Brian Abelson, Enigma, 2014
 
 ## Navigation
 
